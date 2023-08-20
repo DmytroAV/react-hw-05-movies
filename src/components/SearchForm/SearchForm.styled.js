@@ -5,13 +5,15 @@ import styled from 'styled-components';
  */
 
 export const FormSearch = styled.form`
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 40px;
   align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 360px;
+  justify-self: center;
+  height: 40px;
+  width: 500px;
   background-color: #fff;
-  border-radius: 3px;
+  border: 1px solid #9e9a9a;
+  border-radius: 50px;
   overflow: hidden;
 `;
 
@@ -25,9 +27,9 @@ export const Input = styled.input`
   font: inherit;
   font-style: italic;
   font-size: 20px;
-  border: 1px solid #9e9a9a;
   outline: none;
-  padding-left: 4px;
+  border: none;
+  padding-left: 20px;
   padding-right: 4px;
 
   &::placeholder {
@@ -41,23 +43,26 @@ export const Input = styled.input`
  */
 
 export const ButtonSearch = styled.button`
-  display: inline-block;
-  width: 80px;
-  height: 28px;
-  border: 0;
-  background-size: 40%;
-  background-color: #9e9a9a;;
-  border-radius: 2px;
-  color: white;
-  background-repeat: no-repeat;
-  background-position: center;
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  color: #3984d8;
   opacity: 0.6;
   transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   outline: none;
   &:hover {
     opacity: 1;
-    background-color: #bfbfbf;
+    background-color: #78b1ef;
+    color: #fff;
+  }
+  svg {
+    width: 22px;
+    height: 22px;
   }
 `;
 

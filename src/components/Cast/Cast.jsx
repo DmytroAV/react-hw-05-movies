@@ -18,7 +18,7 @@ const Cast = () => {
     async function getCastMovie() {
       try {
         const { cast } = await fetchCastMovie(movieId);
-        setCasts(cast);
+        setCasts(filteredCasts(cast));
         setStatus(STATUS.RESOLVED);
       } catch (error) {
         setError(error.message);
@@ -39,27 +39,28 @@ const Cast = () => {
     return filteredArray;
   };
 
-  const items = filteredCasts(casts);
-
   return (
     <>
       {status === STATUS.PENDING && <Loader />}
-      {status === STATUS.RESOLVED && (
+      {status === STATUS.RESOLVED && casts.length > 0 ? (
         <List>
-          {items?.map(
-            item =>
-              item.profile_path && (
-                <ListItem key={item.id}>
+          {casts?.map(
+            cast =>
+              cast.profile_path && (
+                <ListItem key={cast.id}>
                   <img
-                    src={`${BASE_POSTER_URL + item.profile_path}`}
+                    src={`${BASE_POSTER_URL + cast.profile_path}`}
                     alt="profile"
-                    width={200}
+                    width={230}
                   />
-                  <h5>{item.name}</h5>
+                  <h5>{cast.name}</h5>
+                  <p>({cast.character})</p>
                 </ListItem>
               )
           )}
         </List>
+      ) : (
+        <ErrorCard message="There are no cast yet..." />
       )}
       {status === STATUS.REJECTED && <ErrorCard error={error} />}
     </>

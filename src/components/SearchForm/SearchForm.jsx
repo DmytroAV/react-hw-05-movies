@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
+import { BsSearch } from 'react-icons/bs';
 import { FormSearch, Input, ButtonSearch } from './SearchForm.styled';
 
 const SearchForm = ({ setSearchParams }) => {
@@ -17,8 +18,6 @@ const SearchForm = ({ setSearchParams }) => {
       setSearchParams({});
     }
     setSearchParams({ query });
-    // const nextParams = query !== '' ? { query } : {};
-    // setSearchParams({ nextParams });
 
     setQuery('');
   };
@@ -34,7 +33,7 @@ const SearchForm = ({ setSearchParams }) => {
         placeholder="Search movies"
       />
       <ButtonSearch type="submit" disabled={!query}>
-        Search
+        <BsSearch />
       </ButtonSearch>
     </FormSearch>
   );

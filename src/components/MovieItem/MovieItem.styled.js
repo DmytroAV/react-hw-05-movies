@@ -1,119 +1,166 @@
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from 'styled-components';
+import { breakpoints, devices } from "utils/constants";
 
 export const Container = styled.div`
   display: grid;
-  grid-template-rows: 50px 1fr;
+  grid-template-columns: 40% 60%;
+  justify-items: center;
+  max-width: 1180px;
   row-gap: 20px;
-  h3 {
-    margin-left: 10px;
-  }
-`;
-/*
- * Стиль компонента MovieItem
- */
-
-export const ContainerMovie = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
   padding: 10px;
-  border-radius: 2px;
-  cursor: pointer;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.2),
-    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
+  grid-template-areas:
+  "goback goback"
+  "image infoMovie"
+  "player player"
+  "addInfo addInfo"
+  "info info";
+  background-color: #e9e9e9;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+
+  @media only screen and ${devices.msm} {
+    max-width: ${breakpoints.md};
+    grid-template-columns: 1fr;
+    grid-template-areas:
+  "goback"
+  "image"
+  "infoMovie"
+  "player"
+  "addInfo"
+  "info";
+  }
 `;
 
 export const ImageMovie = styled.img`
-  max-width: 70%;
-  border: 2px solid #767272;
+  grid-area: image;
+  justify-self: center;
+  width: 80%;
+  border: 1px solid #0649a1;
   border-radius: 3px;
-  object-fit: cover;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  &:hover {
-    transform: scale(1.03);
-    /* cursor: zoom-in; */
-  }
 `;
 
 export const InfoMovie = styled.div`
   display: grid;
+  grid-template-rows: 15% 15% 15% 1fr 15%;
+  grid-area: infoMovie;
+  padding-right: 15px;
 
-`
+  & h2 {
+    color: #0649a1;
+    font-size: 24px;
+  }
 
-export const OverviewMovie = styled.div`
+  & span {
+    font-size: 20px;
+    font-weight: 700;
+    color: #0649a1;
+  }
+
+  & p {
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  @media only screen and ${devices.msm} {
+    padding: 15px;
+
+    & h2 {
+      justify-self: center;
+    }
+
+    & p {
+      justify-self: center;
+    }
+  }
+
+`;
+
+export const ContainerPlayer = styled.div`
+  grid-area: player;
   display: grid;
-
-`
-
-export const GenresMovie = styled.div`
-  display: grid;
-
-`
-
-
-export const BtnLinkGoBack = styled(Link)`
-  align-self: center;
-  border: none;
-  cursor: pointer;
-  text-decoration: none;
-  padding: 8px 15px 8px 15px;
-  background: #a4a3a1;
-  color: #fff;
-  box-shadow: 1px 1px 4px #dadada;
-  border-radius: 3px;
-  width: 100px;
-  margin-left: 10px;
-  text-transform: uppercase;
-  &:hover {
-    background: #dadada;
-    color: #605e5a;
+  grid-auto-rows: 1fr;
+  justify-items: center;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: auto;
+  padding: 20px;
+  margin: 20px 0;
+  & div {
+    margin-bottom: 20px;
   }
 `;
 
-export const TitleMovie = styled.h3`
-    color: #363232;
-    font-size: 18px;
-`
-export const ContainerAddInf = styled.div`
+export const AddInfo = styled.div`
+  grid-area: addInfo;
   display: grid;
- & h2 {
-  color: red
- }
-`
-export const LinkInfo = styled(NavLink)`
-    cursor: pointer;
-    text-decoration: none;
-    &.active{
-      color: red;
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 1fr;
+  grid-template-areas:
+      "button"
+      "info";
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  row-gap: 30px;
+  padding: 20px;
+`;
+
+export const ButtonContainer = styled.div`
+  grid-area: button;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  width: 320px;
+`;
+
+export const Button = styled(NavLink)`
+  display: grid;
+  justify-content: center;
+  align-self: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 800;
+  border: 3px solid #5b8fc9;
+  padding: 8px 10px 8px 10px;
+  color: #5b8fc9;
+  box-shadow: 1px 1px 4px #dadada;
+  border-radius: 3px;
+  width: 100px;
+  text-transform: uppercase;
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
+    0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+  &:hover {
+    background: #78b1ef;
+    color: #f6f8f9;
+    border: 3px solid #f6f8f9;
+  }
+`;
+
+export const LinkCast = styled(Button)`
+
+  &.active{
+    background: #78b1ef;
+    color: #f6f8f9;
+    border: 3px solid #f6f8f9;
+    pointer-events: none;
     }
-`
+`;
 
+export const LinkReviews = styled(Button)`
 
-// export const ContainerGallery = styled.ul`
-//   display: grid;
-//   max-width: calc(100vw - 48px);
-//   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-//   grid-gap: 16px;
-//   margin-top: 0;
-//   margin-bottom: 0;
-//   padding: 0;
-//   list-style: none;
-//   margin-left: auto;
-//   margin-right: auto;
-// `;
-  // display: inline-block;
-  // width: 48px;
-  // height: 48px;
-  // border: 0;
-  // background-size: 40%;
-  // background-repeat: no-repeat;
-  // background-position: center;
-  // opacity: 0.6;
-  // transition: opacity 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  // cursor: pointer;
-  // outline: none;
-  // &:hover {
-  //   opacity: 1;
-    // background-color: #bfbfbf;
-  // }
+  &.active{
+    background: #78b1ef;
+    color: #f6f8f9;
+    border: 3px solid #f6f8f9;
+    pointer-events: none;
+    }
+`;
+
+export const BtnLinkGoBack = styled(Button)`
+  grid-area: goback;
+  justify-self: start;
+  margin: 20px 50px;
+`;

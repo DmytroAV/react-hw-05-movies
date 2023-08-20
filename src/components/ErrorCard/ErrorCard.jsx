@@ -1,10 +1,11 @@
 import PropTypes from 'prop-types';
+import { Container } from './ErrorCard.styled';
 
 const ErrorCard = ({ message }) => {
   return (
-    <div>
+    <Container>
       <p>{message}</p>
-    </div>
+    </Container>
   );
 };
 

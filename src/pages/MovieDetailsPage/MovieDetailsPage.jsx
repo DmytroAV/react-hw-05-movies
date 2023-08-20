@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
-import { fetchMovieDetails } from '../services/fetchAPI';
-import { MovieItem } from '../components/MovieItem/MovieItem';
-import { Loader } from '../components/Loader/Loader';
-import { STATUS } from '../utils/status';
-import ErrorCard from '../components/ErrorCard/ErrorCard';
+import { fetchMovieDetails } from '../../services/fetchAPI';
+import { MovieItem } from '../../components/MovieItem/MovieItem';
+import { Loader } from '../../components/Loader/Loader';
+import { STATUS } from '../../utils/status';
+import ErrorCard from '../../components/ErrorCard/ErrorCard';
 
 const MovieDetails = () => {
   const [movie, setMovie] = useState([]);
@@ -12,7 +12,7 @@ const MovieDetails = () => {
   const [status, setStatus] = useState(STATUS.IDLE);
   const { movieId } = useParams();
   const location = useLocation();
-  const backLinkHrefPef = useRef(location.state?.from ?? '/movies');
+  const backLinkHrefPef = useRef(location.state?.from ?? '/');
 
   useEffect(() => {
     setStatus(STATUS.PENDING);
@@ -35,6 +35,7 @@ const MovieDetails = () => {
       {status === STATUS.RESOLVED && (
         <MovieItem movie={movie} backLinkHrefPef={backLinkHrefPef.current} />
       )}
+
       {status === STATUS.REJECTED && <ErrorCard error={error} />}
     </>
   );

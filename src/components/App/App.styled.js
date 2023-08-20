@@ -4,8 +4,8 @@ import { styled } from 'styled-components';
  */
 
 export const ContainerApp = styled.div`
-  /* display: grid;
+  display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 16px;
-  padding-bottom: 24px; */
+  height: 100vh;
+  padding: 10px;
 `;

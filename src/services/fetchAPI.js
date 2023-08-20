@@ -61,4 +61,11 @@ export async function fetchReviewsMovie(movieId) {
   return data;
 };
 
-// fetchTrending().then(console.log(response.data))
+// 'https://api.themoviedb.org/3/movie/626735/videos?language=en-US'
+
+export async function fetchMovieVideo(movieId) {
+  const { data } = await axios.get(
+    `movie/${movieId}/videos?api_key=${KEY_API}&language=en-US`, options
+  )
+  return data;
+};

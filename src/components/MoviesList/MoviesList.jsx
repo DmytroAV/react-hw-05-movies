@@ -5,14 +5,13 @@ import {
   ContainerGallery,
   ContainerMovie,
   ImageMovieWeb,
-  TitleMovie,
 } from './MoviesList.styled';
 
 const MoviesList = ({ movies }) => {
   const location = useLocation();
 
   return (
-    <div>
+    <>
       <ContainerGallery>
         {movies?.map(movie => (
           <ContainerMovie key={movie.id}>
@@ -24,23 +23,14 @@ const MoviesList = ({ movies }) => {
                     : PLACEHOLDER + '?text=' + movie.original_title
                 }`}
                 alt="poster movie"
-                width={300}
               />
-              {movie.title && (
-                <TitleMovie>
-                  {movie.title} ({movie.release_date?.substring(0, 4)})
-                </TitleMovie>
-              )}
-              {movie.name && (
-                <TitleMovie>
-                  {movie.name} ({movie.first_air_date?.substring(0, 4)})
-                </TitleMovie>
-              )}
+              {movie.title && <h3>{movie.title}</h3>}
+              {movie.name && <h3>{movie.name}</h3>}
             </Link>
           </ContainerMovie>
         ))}
       </ContainerGallery>
-    </div>
+    </>
   );
 };
 
@@ -53,7 +43,7 @@ MoviesList.propTypes = {
       title: PropTypes.string,
       name: PropTypes.string,
     })
-  ),
+  ).isRequired,
 };
 
 export default MoviesList;

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import ShowMoreText from 'react-show-more-text';
 import { fetchReviewsMovie } from '../../services/fetchAPI';
 import { Loader } from '../Loader/Loader';
 import { STATUS } from '../../utils/status';
@@ -35,14 +36,20 @@ const Reviews = () => {
           {reviews.map(({ id, author_details, content }) => (
             <ListItem key={id}>
               <h5>{author_details.username}</h5>
-              <p>{content}</p>
+              <ShowMoreText
+                lines={4}
+                more="Show more >"
+                less="< Show less"
+                expanded={false}
+                truncatedEndingComponent={'... '}
+              >
+                <p>{content}</p>
+              </ShowMoreText>
             </ListItem>
           ))}
         </List>
       ) : (
-        <div>
-          <p>Don`t reviews</p>
-        </div>
+        <ErrorCard message="There are no reviews yet..." />
       )}
       {status === STATUS.REJECTED && <ErrorCard error={error} />}
     </>

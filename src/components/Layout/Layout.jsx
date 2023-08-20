@@ -1,26 +1,41 @@
 import { Suspense } from 'react';
-import { NavLink, Outlet } from 'react-router-dom';
-import { Container, Header, Nav } from './Layout.styled';
+import { Outlet, NavLink } from 'react-router-dom';
+import { SiThemoviedatabase } from 'react-icons/si';
+import {
+  Container,
+  Footer,
+  Header,
+  Main,
+  Nav,
+  SvgContainer,
+} from './Layout.styled';
 import { Loader } from '../Loader/Loader';
+import ScrollToTopBtn from '../ScrollToTopBtn/ScrollToTopBtn';
+import { GlobalStyle } from '../GlobalStyles.styled';
+import Copyright from '../Copyright/Copyright';
 
 const SharedLayout = () => {
   return (
     <Container>
       <Header>
-        <div>
-          <p>LOGO</p>
-        </div>
+        <SvgContainer>
+          <SiThemoviedatabase width="150px" />
+        </SvgContainer>
         <Nav>
           <NavLink to="/">Home</NavLink>
           <NavLink to="/movies">Movies</NavLink>
         </Nav>
       </Header>
-      <main>
+      <Main>
         <Suspense fallback={<Loader />}>
           <Outlet />
         </Suspense>
-      </main>
-      <footer></footer>
+        <ScrollToTopBtn />
+      </Main>
+      <Footer>
+        <Copyright />
+      </Footer>
+      <GlobalStyle />
     </Container>
   );
 };
